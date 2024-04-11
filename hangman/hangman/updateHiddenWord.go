@@ -1,4 +1,4 @@
-package hangman
+package hangmandep
 
 // updateHiddenWord met à jour le mot caché avec la lettre devinée par l'utilisateur.
 func UpdateHiddenWord(wordChosen string, wordHidden []string, guessedLetter rune) {

@@ -1,4 +1,4 @@
-package hangman
+package hangmandep
 
 // fonction permettant de check si un string est compris dans un tableau
 func Used(s []string, val string) bool {

@@ -1,4 +1,4 @@
-package hangman
+package hangmandep
 
 // printHidden affiche les caractères cachés du mot choisi.
 func PrintHidden(wordChosen string) []string {
