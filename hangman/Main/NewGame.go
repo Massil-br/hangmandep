@@ -3,7 +3,7 @@ package hangman
 import (
 	"bufio"
 	"fmt"
-	hangman "hangman/hangman"
+	"hangmandep/hangman/hangman"
 	"math/rand"
 	"os"
 	"strings"
