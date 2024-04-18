@@ -3,7 +3,6 @@ package hangmandep
 import (
 	"bufio"
 	"fmt"
-	hangmandep "hangmandep/hangman/hangman"
 	"math/rand"
 	"os"
 	"strings"
@@ -15,7 +14,7 @@ func NewGame() {
 	// Fichier contenant la liste des mots
 	wordsFile := "words.txt"
 	// Récupère la liste des mots
-	wordsList, err := hangmandep.ReadWords(wordsFile)
+	wordsList, err := ReadWords(wordsFile)
 	// Vérifie si la fonction a fonctionné correctement
 	if err != nil {
 		fmt.Println("Erreur lors de la lecture du fichier des mots.")
@@ -30,7 +29,7 @@ func NewGame() {
 		return
 	}
 	// Initialise le mot caché
-	wordHidden := hangmandep.PrintHidden(wordChosen)
+	wordHidden := PrintHidden(wordChosen)
 
 	// Nombre maximal de tentatives
 	maxAttempts := 10
@@ -38,7 +37,7 @@ func NewGame() {
 	// Boucle pour permettre à l'utilisateur de deviner les lettres
 	reader := bufio.NewReader(os.Stdin)
 	for attemptsLeft > 0 {
-		hangmandep.PrintHangman(attemptsLeft)
+		PrintHangman(attemptsLeft)
 		fmt.Printf("Il vous reste %d tentatives.\n", attemptsLeft)
 		fmt.Println(strings.Join(wordHidden, " "))
 		fmt.Print("Devinez une lettre: ")
@@ -53,7 +52,7 @@ func NewGame() {
 		input = strings.TrimSpace(input)
 
 		// Vérifiez si l'entrée est vide ou contient des chiffres/des espaces
-		if input == "" || hangmandep.ContainsNumbersOrSpaces(input) {
+		if input == "" || ContainsNumbersOrSpaces(input) {
 			fmt.Println("Veuillez entrer une lettre valide.")
 			continue
 		}
@@ -66,7 +65,7 @@ func NewGame() {
 			continue
 		}
 		//si une lettre est déja utilisée alors on affiche un msg d erreure et on recommence
-		if hangmandep.Used(used_letter, string(guessedLetter)) {
+		if Used(used_letter, string(guessedLetter)) {
 			fmt.Println("la lettre saisie est déja utilisée")
 			continue
 		}
@@ -75,7 +74,7 @@ func NewGame() {
 		used_letter = append(used_letter, strings.ToLower(input))
 
 		// Mettre à jour le mot caché avec la lettre devinée
-		hangmandep.UpdateHiddenWord(wordChosen, wordHidden, guessedLetter)
+		UpdateHiddenWord(wordChosen, wordHidden, guessedLetter)
 
 		// Vérifie si la lettre devinée est correcte
 		guessedCorrectly := false
